@@ -3,10 +3,14 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/cloudops_billing
-    username: postgres
-    password: postgrespassword
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/cloudops}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgrespassword}
     driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,12 +20,12 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
 gcs:
-  bucket-name: cloudops-invoices-dev
-  project-id: cloudops-psa-dev
+  bucket-name: ${GCS_BUCKET_INVOICES:cloudops-invoices-dev}
+  project-id: ${GCP_PROJECT_ID:cloudops-psa-dev}
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true

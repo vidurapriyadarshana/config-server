@@ -4,15 +4,15 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/cloudops_products
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/cloudops_products}
 
 gcs:
-  bucket-name: cloudops-product-assets-dev
-  project-id: cloudops-psa-dev
+  bucket-name: ${GCS_BUCKET_PRODUCT_ASSETS:cloudops-product-assets-dev}
+  project-id: ${GCP_PROJECT_ID:cloudops-psa-dev}
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
