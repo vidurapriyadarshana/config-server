@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: client-billing-service
+          uri: lb://client-billing-service
+          predicates:
+            - Path=/api/v1/clients/**, /api/v1/subscriptions/**, /api/v1/invoices/**, /api/v1/payments/**
+        - id: service-desk-service
+          uri: lb://service-desk-service
+          predicates:
+            - Path=/api/v1/tickets/**, /api/v1/comments/**
+        - id: product-license-service
+          uri: lb://product-license-service
+          predicates:
+            - Path=/api/v1/products/**, /api/v1/licenses/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

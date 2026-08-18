@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/cloudops_products
+
+gcs:
+  bucket-name: cloudops-product-assets-dev
+  project-id: cloudops-psa-dev
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

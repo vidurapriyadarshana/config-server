@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/cloudops_servicedesk
+
+gcs:
+  bucket-name: cloudops-ticket-attachments-dev
+  project-id: cloudops-psa-dev
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
